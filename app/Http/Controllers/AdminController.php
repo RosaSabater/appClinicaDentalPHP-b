@@ -33,13 +33,13 @@ class AdminController extends Controller
             
             $response = array_map( function($cita) {
     
-                $cita["datosUsuario"] = array(
+                $cita["datosUsuario"] = array(array(
                     "rol" => $cita["rol"],
                     "nombre" => $cita["nombre"],
                     "apellidos" => $cita["apellidos"],
                     "telefono" => $cita["telefono"],
                     "email" => $cita["email"],
-                );
+                ));
                 
                 unset($cita["rol"]);
                 unset($cita["nombre"]);

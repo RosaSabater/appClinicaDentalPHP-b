@@ -19,11 +19,20 @@ class CitaController extends Controller
         try {
             $nueva_cita = [
                 "usuario_id" => $body['usuarioId'],
-                "motivo" => $body['motivo']
+                "motivo" => $body['motivo'],
+                "created_at" => $body['fecha']
             ];
             
             // Creo la cita
-            $respuesta = Cita::create($nueva_cita);
+            $respuesta_nuevacita = Cita::create($nueva_cita);
+
+            $respuesta = [
+                'estado'=> 'pendiente',
+                'motivo'=> $body['motivo'],
+                '_id'=> $respuesta_nuevacita['id'],
+                'usuarioId'=> $body['usuarioId'],
+                'fecha'=> $body['fecha']
+            ];
             
             return response() -> json($respuesta);
         } catch (\Illuminate\Database\QueryException $e) {
@@ -38,7 +47,7 @@ class CitaController extends Controller
     public function mostrarCitas($usuarioId)
     {
         try {
-            $citas = Cita::where("usuario_id", "=", $usuarioId)-> select('id as _id', 'estado', 'created_at as fecha', 'usuario_id as UsuarioId', 'motivo')->get();
+            $citas = Cita::where("usuario_id", "=", $usuarioId)-> select('id as _id', 'estado', 'created_at as fecha', 'usuario_id as usuarioId', 'motivo')->get();
             return response() -> json($citas);
 
         } catch (\Illuminate\Database\QueryException $e) {

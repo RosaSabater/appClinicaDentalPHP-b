@@ -16,7 +16,7 @@ class Cita extends Model
      * @var array
      */
     protected $fillable = [
-        "estado", "usuario_id", "motivo"
+        "estado", "usuario_id", "motivo", 'created_at'
     ];
 
     /**

@@ -9,7 +9,7 @@ Content-Type:application/json
     "nombre": "Adrian",
     "apellidos": "Tortajada",
     "telefono": "664465545",
-    "email": "adrian4@gmail.com",
+    "email": "adrian@gmail.com",
     "password": "12345678" 
 }
 ###
@@ -19,7 +19,7 @@ POST {{url}}/areaclientes/login
 Content-Type:application/json
 
 {
-    "email": "adrian4@gmail.com",
+    "email": "adrian@gmail.com",
     "password": "12345678" 
 }
 ###
@@ -38,7 +38,7 @@ Authorization: {{token}}
 
 {
     "fecha": "2022-12-25 16:29",
-    "usuarioId": 11,
+    "usuarioId": 12,
     "motivo": "Cita"
 }
 
