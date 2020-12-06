@@ -11,6 +11,13 @@ use App\Models\Cita;
 
 class UsuarioController extends Controller
 {
+    public function nada (Request $request) {
+          
+        return response() -> json([
+            "message" => "holi",
+        ]);
+    }
+
     public function registro(Request $request)
     {
         $body = $request -> all();
@@ -25,7 +32,7 @@ class UsuarioController extends Controller
                 
                 
             return response() -> json([
-                "success" => "usuario creado",
+                "message" => "usuario creado",
             ]);
         } catch (\Illuminate\Database\QueryException $e) {
             return response()->json([

@@ -22,6 +22,8 @@ use App\Http\Middleware\CheckAdmin;
 
 
 // Usuarios
+Route::get('/', [UsuarioController::class, 'nada']);
+
 Route::post('/registro',[UsuarioController::class, 'registro']);
 Route::post('/areaclientes/login',[UsuarioController::class, 'login']);
 Route::get('/areaclientes/logout',[UsuarioController::class, 'logout'])->middleware(CheckUser::class);
