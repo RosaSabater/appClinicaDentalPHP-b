@@ -1,0 +1,67 @@
+
+@url = http://localhost:8000/api
+###
+
+POST {{url}}/registro
+Content-Type:application/json
+
+{
+    "nombre": "Adrian",
+    "apellidos": "Tortajada",
+    "telefono": "664465545",
+    "email": "adrian4@gmail.com",
+    "password": "12345678" 
+}
+###
+
+# @name resLogin
+POST {{url}}/areaclientes/login
+Content-Type:application/json
+
+{
+    "email": "adrian@gmail.com",
+    "password": "12345678" 
+}
+###
+
+@token = {{resLogin.response.body.token}}
+
+
+
+GET {{url}}/areaclientes/logout/
+Authorization: {{token}}
+###
+
+POST {{url}}/areaclientes/nuevacita
+Content-Type:application/json
+Authorization: {{token}}
+
+{
+    "fecha": "2022-12-25 16:29",
+    "usuarioId": 7,
+    "motivo": "Cita"
+}
+
+###
+
+GET  {{url}}/areaclientes/citas/7
+Authorization: {{token}}
+###
+
+PUT {{url}}/areaclientes/cancelarcita/11
+Authorization: {{token}}
+
+###
+
+DELETE {{url}}/areaclientes/baja
+Authorization: {{token}}
+
+###
+
+GET {{url}}/admin/mostrarUsuarios
+Authorization: {{token}}
+###
+
+GET {{url}}/admin/mostrarCitas
+Authorization: {{token}}
+###
