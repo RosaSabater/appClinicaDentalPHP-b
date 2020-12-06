@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use App\Models\Usuario;
+use App\Models\Cita;
 
 class UsuarioController extends Controller
 {
@@ -92,22 +93,30 @@ class UsuarioController extends Controller
     }
 
     public function baja(Request $request)
-    {
-        $body = $request -> all();
-        
+    {   
         try {
+            $token = $request->header("Authorization", "");
 
-            $body = Usuario::delete($body);
-                
-                
+            // obtengo el usuario con ese token
+            $usuario = Usuario::where('token', '=', $token)-> first();
+
+            // obtengo la id del usuario
+            $id = $usuario['id'];
+
+            // obtengo todas las citas de esa id y las borro
+            Cita::where('usuario_id', '=', $id)->delete();
+
+            // borro el usuario
+            $usuario->delete();
+
             return response() -> json([
-                "success" => "usuario creado",
+                "message" => 'Se ha eliminado la cuenta correctamente.',
             ]);
+
         } catch (\Illuminate\Database\QueryException $e) {
             return response()->json([
-                    'error' => "El email ya existe.",
-                    'errorCode' => "user_register_1"
-                ], 500);
+                    'message' => 'No se ha podido eliminar el usuario.'
+            ], 500);
         };
     }
 }

@@ -19,7 +19,7 @@ POST {{url}}/areaclientes/login
 Content-Type:application/json
 
 {
-    "email": "adrian@gmail.com",
+    "email": "adrian4@gmail.com",
     "password": "12345678" 
 }
 ###
@@ -38,7 +38,7 @@ Authorization: {{token}}
 
 {
     "fecha": "2022-12-25 16:29",
-    "usuarioId": 7,
+    "usuarioId": 11,
     "motivo": "Cita"
 }
 
