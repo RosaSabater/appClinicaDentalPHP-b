@@ -1,61 +1,126 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# ¿Qué es? 👀
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Backend realizado para una clínica dental. El cliente puede pedir cita y ver sus citas pendientes. Los trabajadores podrán ver un listado de clientes, de citas y buscar a clientes por su id.
 
-## About Laravel
+- Laravel
+- Eloquent
+- SQL
+- REST Client
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+<br>
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+# Cómo lanzarlo 🚀
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- Descargar [repo](https://github.com/RosaSabater/appClinicaDentalPHP-b).
+- Ejecutar:
+	- `php artisan serve`
 
-## Learning Laravel
+<br>
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+# Deploy ☁
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- El proyecto está deployado en [Heroku](https://appclinicadentalphp.herokuapp.com/api).
+- Puede usarse en su front deployado en [Netlify](https://clinicadental.netlify.app)
 
-## Laravel Sponsors
+<br>
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+# Endpoints 📃
+Se pueden ejecutar sin necesidad de Postman con la extensión REST Client.<br>
+Encontraremos un archivo llamado test.rest donde podremos ejecutarlos.
 
-### Premium Partners
+<br>
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[OP.GG](https://op.gg)**
+**Endpoints ADMIN** 🤴
 
-## Contributing
+<br>
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- **GET** /admin/mostrarUsuarios/
 
-## Code of Conduct
+<br>
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+- **GET** /admin/mostrarCitas/
 
-## Security Vulnerabilities
+<br>
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+- **GET** /admin/:id/
+```
+Buscamos a un usuario específico con su id.
+```
 
-## License
+<br>
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+**Endpoints USUARIO** 👥
+
+<br>
+
+- **POST** /registro/
+```json
+{
+    "nombre": "Test",
+    "apellidos": "Test",
+    "telefono": "999999999",
+    "email": "test@gmail.com",
+    "password": "12345678" 
+}
+```
+
+<br>
+
+
+- **POST** /areaclientes/login/
+```json
+{
+    "email": "ejemplo@gmail.com",
+    "password": "1234"
+}
+```
+```
+Aquí se crea el token.
+```
+
+<br>
+
+- **GET** /areaclientes/logout/
+```json
+Authorization: {{token}}
+```
+
+<br>
+
+- **DELETE** /areaclientes/baja/
+```json
+Authorization: {{token}}
+```
+
+<br>
+
+**Endpoints CITAS** 🕐
+
+<br>
+
+- **POST** /areaclientes/nuevacita/
+```json
+Authorization: {{token}}
+{
+    "fecha": "2020-10-19 16:29",
+    "usuarioId": "5f8c457392d0260017eb2184",
+    "motivo": "Cita para empaste"
+}
+```
+
+<br>
+
+- **POST** /areaclientes/citas/:id/
+```json
+Authorization: {{token}}
+```
+
+<br>
+
+- **PUT** /areaclientes/cancelarcita/:id/
+```json
+Authorization: {{token}}
+```
+```
+Buscamos con la id de la cita para cancelarla.
+```
