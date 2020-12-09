@@ -1,6 +1,6 @@
 # ¿Qué es? 👀
 
-Backend realizado para una clínica dental. El cliente puede pedir cita y ver sus citas pendientes. Los trabajadores podrán ver un listado de clientes, de citas y buscar a clientes por su id.
+Backend realizado para una clínica dental. El cliente puede pedir cita y ver sus citas pendientes. Los trabajadores podrán ver un listado de clientes y de citas.
 
 - Laravel
 - Eloquent
