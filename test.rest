@@ -1,5 +1,6 @@
 
-@url = http://localhost:8000/api
+# @url = http://localhost:8000/api
+@url = https://appclinicadentalphp.herokuapp.com/api
 ###
 
 GET {{url}}/
@@ -9,10 +10,10 @@ POST {{url}}/registro
 Content-Type:application/json
 
 {
-    "nombre": "Adrian",
-    "apellidos": "Tortajada",
-    "telefono": "664465545",
-    "email": "adrian@gmail.com",
+    "nombre": "Rosa",
+    "apellidos": "Sabater",
+    "telefono": "664465544",
+    "email": "rosa@gmail.com",
     "password": "12345678" 
 }
 ###
@@ -22,7 +23,7 @@ POST {{url}}/areaclientes/login
 Content-Type:application/json
 
 {
-    "email": "adrian@gmail.com",
+    "email": "rosa@gmail.com",
     "password": "12345678" 
 }
 ###

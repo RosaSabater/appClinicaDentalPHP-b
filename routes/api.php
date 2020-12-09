@@ -20,22 +20,24 @@ use App\Http\Middleware\CheckAdmin;
 |
 */
 
+Route::group(['middleware' => ['cors']], function () {
 
 // Usuarios
-Route::get('/', [UsuarioController::class, 'nada']);
+    Route::get('/', [UsuarioController::class, 'nada']);
 
-Route::post('/registro',[UsuarioController::class, 'registro']);
-Route::post('/areaclientes/login',[UsuarioController::class, 'login']);
-Route::get('/areaclientes/logout',[UsuarioController::class, 'logout'])->middleware(CheckUser::class);
-Route::delete('/areaclientes/baja',[UsuarioController::class, 'baja'])->middleware(CheckUser::class);
-
-
-// Citas
-Route::post('/areaclientes/nuevacita',[CitaController::class, 'nuevaCita'])->middleware(CheckUser::class);
-Route::get('/areaclientes/citas/{usuarioId}',[CitaController::class, 'mostrarCitas'])->middleware(CheckUser::class);
-Route::put('/areaclientes/cancelarcita/{citaId}',[CitaController::class, 'cancelarCita'])->middleware(CheckUser::class);
+    Route::post('/registro', [UsuarioController::class, 'registro']);
+    Route::post('/areaclientes/login', [UsuarioController::class, 'login']);
+    Route::get('/areaclientes/logout', [UsuarioController::class, 'logout'])->middleware(CheckUser::class);
+    Route::delete('/areaclientes/baja', [UsuarioController::class, 'baja'])->middleware(CheckUser::class);
 
 
-//Admin
-Route::get('/admin/mostrarUsuarios', [AdminController::class, 'mostrarUsuarios'])->middleware(CheckAdmin::class);
-Route::get('/admin/mostrarCitas', [AdminController::class, 'mostrarCitas'])->middleware(CheckAdmin::class);
+    // Citas
+    Route::post('/areaclientes/nuevacita', [CitaController::class, 'nuevaCita'])->middleware(CheckUser::class);
+    Route::get('/areaclientes/citas/{usuarioId}', [CitaController::class, 'mostrarCitas'])->middleware(CheckUser::class);
+    Route::put('/areaclientes/cancelarcita/{citaId}', [CitaController::class, 'cancelarCita'])->middleware(CheckUser::class);
+
+
+    //Admin
+    Route::get('/admin/mostrarUsuarios', [AdminController::class, 'mostrarUsuarios'])->middleware(CheckAdmin::class);
+    Route::get('/admin/mostrarCitas', [AdminController::class, 'mostrarCitas'])->middleware(CheckAdmin::class);
+});
